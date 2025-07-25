@@ -2,6 +2,7 @@
 
 import { writeClient } from '@/sanity/lib/write-client';
 import React, { useState } from 'react';
+import bcrypt from 'bcryptjs';
 
 type Employee = {
   emp_no: number;
@@ -35,9 +36,19 @@ const EmployeeForm: React.FC = () => {
     e.preventDefault();
 
     try {
+      // 1. Hash the password before storing
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(employee.password, salt);
+
+      // 2. Create user with hashed password
       const result = await writeClient.create({
         _type: 'user',
-        ...employee,
+        emp_no: employee.emp_no,
+        name: employee.name,
+        designation: employee.designation,
+        department: employee.department,
+        password: hashedPassword,
+        role: employee.role,
       });
 
       console.log('Created User:', result);
