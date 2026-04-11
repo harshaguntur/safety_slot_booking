@@ -1,104 +1,208 @@
-# ⚖️ Law Learning (Next.js)
+# 🛡️ Safety Slot Booking System
 
-This is a **Next.js-based law learning application** designed to make legal knowledge simple, accessible, and practical for everyone.  
-The goal is straightforward: **help every individual understand their basic rights, duties, and laws in everyday life.**
-
----
-
-## 🌍 Why This App?
-
-Most people don’t understand the law until they actually need it — and by then, it’s often too late.
-
-This app helps users:
-- Learn basic laws in simple language  
-- Understand rights and responsibilities  
-- Become more aware and confident in real-life situations  
-
-Because knowing the law isn’t optional — it’s necessary.
+A modern web application built with Next.js that helps organizations manage and streamline safety slot bookings efficiently.  
+This system ensures that workers, contractors, and users can book time slots in a controlled and organized manner, improving safety compliance and reducing overcrowding.
 
 ---
 
-## ✨ Features
+## 🚀 Overview
 
-- 📖 **Simple Law Explanations**  
-  Legal concepts broken down into easy, understandable content  
+The Safety Slot Booking System is designed to solve a real-world problem:  
+**managing limited access safely and efficiently.**
 
-- 🧠 **Interactive Learning**  
-  Learn through short modules, examples, and practical scenarios  
+It provides:
+- User authentication
+- Slot booking system
+- Contractor registration
+- Admin dashboard capabilities
+- Backend powered by Sanity CMS
 
-- 📱 **User-Friendly Interface**  
-  Clean and minimal design for smooth learning  
-
-- ⚡ **Fast & Responsive**  
-  Built with Next.js for speed and performance  
-
----
-
-## 🛠️ Getting Started
-
-Run the development server:
-
-npm run dev  
-# or  
-yarn dev  
-# or  
-pnpm dev  
-# or  
-bun dev  
-
-Open http://localhost:3000 in your browser to view the app.
-
-The app updates automatically as you make changes.
+This makes it ideal for industries, campuses, or workplaces where safety and scheduling matter.
 
 ---
 
-## ✏️ Development
+## 🧩 Features
 
-Start editing here:
+### 🔐 Authentication
+- Secure login/signup system using NextAuth
+- Password hashing with bcrypt
+- Session-based authentication
 
-app/page.tsx  
+### 📅 Slot Booking
+- Users can book available safety slots
+- Prevents overbooking
+- Stores booking data in backend
 
-Changes reflect instantly with hot reload.
+### 👷 Contractor System
+- Dedicated contractor signup
+- Separate data handling for contract workers
 
----
+### 📊 Dashboard
+- Centralized interface for managing:
+  - Users
+  - Bookings
+  - Contractors
 
-## 🎨 Tech Stack
-
-- Next.js  
-- React  
-- next/font (Geist font for optimized typography)  
-
----
-
-## 📚 Learn More
-
-- https://nextjs.org/docs → Documentation  
-- https://nextjs.org/learn → Interactive guide  
-- https://github.com/vercel/next.js → Source code  
-
----
-
-## 🚀 Deployment
-
-Deploy easily using Vercel:
-
-https://vercel.com/new  
-
-More details:  
-https://nextjs.org/docs/app/building-your-application/deploying  
+### 🧠 Backend (Sanity CMS)
+- Structured content storage
+- Real-time data management
+- Scalable and flexible schema system
 
 ---
 
-## 💡 Vision
+## 🛠️ Tech Stack
 
-To create a platform where:
-- Every student understands basic law  
-- Every citizen knows their rights  
-- Legal awareness becomes normal, not rare  
+**Frontend**
+- Next.js 15
+- React 19
+- Tailwind CSS
+- Styled Components
+
+**Backend / CMS**
+- Sanity.io
+
+**Authentication**
+- NextAuth.js
+- bcrypt
+
+**Other Tools**
+- TypeScript
+- ESLint
 
 ---
 
-## ⚠️ Disclaimer
+## 📁 Project Structure
 
-This app is for **educational purposes only** and does not provide legal advice.  
-For serious legal matters, always consult a qualified professional.
+```
+app/
+ ├── api/
+ │    ├── auth/                # Authentication routes
+ │    ├── bookSlot/            # Slot booking API
+ │    ├── user_signup/         # User registration
+ │    ├── user_login/          # Login system
+ │    ├── contract_emp_signup/ # Contractor signup
+ │    └── dashboard/           # Dashboard logic
+ │
+ ├── context/
+ │    └── UserContext.tsx      # Global user state
+ │
+ ├── layout.tsx               # Root layout
+ ├── page.tsx                 # Home page
+ └── providers.tsx            # App providers
+
+sanity/
+ ├── schemaTypes/
+ │    ├── user.ts
+ │    ├── slotbooking.ts
+ │    ├── bookedslots.ts
+ │    └── contract_worker.ts
+ │
+ └── lib/
+      ├── client.ts
+      └── write-client.ts
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/safety_slot_booking.git
+cd safety_slot_booking
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Setup environment variables
+
+Create a `.env.local` file and add:
+
+```
+NEXTAUTH_SECRET=your_secret
+NEXTAUTH_URL=http://localhost:3000
+
+SANITY_PROJECT_ID=your_project_id
+SANITY_DATASET=your_dataset
+SANITY_API_TOKEN=your_token
+```
+
+---
+
+### 4. Run the development server
+```bash
+npm run dev
+```
+
+App will run on:
+```
+http://localhost:3000
+```
+
+---
+
+## 🔄 API Routes
+
+| Route | Description |
+|------|-------------|
+| `/api/auth` | Authentication (NextAuth) |
+| `/api/bookSlot` | Book a slot |
+| `/api/user_signup` | Register user |
+| `/api/user_login` | Login user |
+| `/api/contract_emp_signup` | Contractor registration |
+| `/api/dashboard` | Dashboard data |
+
+---
+
+## 📌 Use Cases
+
+- Industrial safety scheduling
+- Workplace shift control
+- Campus lab booking systems
+- Event crowd management
+
+---
+
+## ⚠️ Limitations
+
+- UI is minimal and can be improved
+- No advanced admin role management yet
+- Needs validation improvements on forms
+- Error handling can be more robust
+
+---
+
+## 🔮 Future Improvements
+
+- Role-based access control (Admin/User/Contractor)
+- Real-time slot availability updates
+- Notifications (Email/SMS)
+- Better UI/UX design
+- Analytics dashboard
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Feel free to:
+- Fork the repo
+- Create a new branch
+- Submit a pull request
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+## 💡 Final Note
+
+This project is not just a booking system —  
+it’s a **safety-first approach to managing people and time efficiently**.
+
+Every organization needs structured safety systems, and this app is a step toward that.
